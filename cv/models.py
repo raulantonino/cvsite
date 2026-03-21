@@ -11,10 +11,10 @@ class Perfil(models.Model):
 
     linkedin_url = models.URLField(blank=True)
     github_url = models.URLField(blank=True)
+    imagen = models.ImageField(upload_to='perfil/', blank=True, null=True)
 
     def __str__(self):
         return self.nombre
-
 
 class Experiencia(models.Model):
     empresa = models.CharField(max_length=200)

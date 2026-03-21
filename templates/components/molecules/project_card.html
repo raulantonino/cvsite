@@ -8,7 +8,14 @@
       {% endif %}
 
       {% if p.descripcion %}
-        <p class="mb-4 flex-grow-1">{{ p.descripcion }}</p>
+        <div class="expandable-text-wrapper mb-4 flex-grow-1">
+          <p class="mb-0 expandable-text project-text js-expandable-text">
+            {{ p.descripcion }}
+          </p>
+          <button type="button" class="btn btn-outline-dark btn-sm mt-3 js-expand-toggle">
+            Leer más
+          </button>
+        </div>
       {% endif %}
 
       {% if p.url %}

@@ -8,61 +8,67 @@
 
 <hr class="my-5">
 
-<section id="experiencia" class="mb-5">
+<section id="experiencia" class="mb-5 js-reveal">
   <h2 class="seccion-titulo mb-4">Experiencia</h2>
 
   {% if experiencias %}
-    <div class="d-flex flex-column gap-4">
-      {% for exp in experiencias %}
-        <div class="card shadow-sm border-0 experiencia-card">
-          <div class="card-body p-4">
-            <div class="row g-4">
-              <div class="col-12 col-lg-5">
-                <h4 class="mb-1 fw-bold">{{ exp.empresa }}</h4>
-                <p class="mb-2 fs-5">{{ exp.cargo }}</p>
-
-                <p class="text-muted mb-0">
-                  {{ exp.fecha_inicio }}
-                  {% if exp.actual %}
-                    — Actualidad
-                  {% elif exp.fecha_termino %}
-                    — {{ exp.fecha_termino }}
-                  {% endif %}
-                </p>
-              </div>
-
-              <div class="col-12 col-lg-7">
-                {% if exp.descripcion %}
-                  <p class="mb-0 text-secondary">{{ exp.descripcion }}</p>
-                {% else %}
-                  <p class="mb-0 text-muted">Sin descripción disponible.</p>
-                {% endif %}
-              </div>
-            </div>
-          </div>
+    {% with experiencias|slice:":3" as experiencias_visibles %}
+      {% with experiencias|slice:"3:" as experiencias_extra %}
+        <div class="d-flex flex-column gap-4">
+          {% for exp in experiencias_visibles %}
+            {% include "components/molecules/experience_item.html" %}
+          {% endfor %}
         </div>
-      {% endfor %}
-    </div>
+
+        {% if experiencias_extra %}
+          <details class="list-expand mt-4">
+            <summary class="list-expand__toggle">Ver más experiencias</summary>
+
+            <div class="d-flex flex-column gap-4 mt-4">
+              {% for exp in experiencias_extra %}
+                {% include "components/molecules/experience_item.html" %}
+              {% endfor %}
+            </div>
+          </details>
+        {% endif %}
+      {% endwith %}
+    {% endwith %}
   {% else %}
     <p>Aún no hay experiencias cargadas.</p>
   {% endif %}
 </section>
 
-<section id="proyectos" class="mb-5">
+<section id="proyectos" class="mb-5 js-reveal">
   <h2 class="seccion-titulo mb-4">Proyectos</h2>
 
   {% if proyectos %}
-    <div class="row g-4">
-      {% for p in proyectos %}
-        {% include "components/molecules/project_card.html" %}
-      {% endfor %}
-    </div>
+    {% with proyectos|slice:":3" as proyectos_visibles %}
+      {% with proyectos|slice:"3:" as proyectos_extra %}
+        <div class="row g-4">
+          {% for p in proyectos_visibles %}
+            {% include "components/molecules/project_card.html" %}
+          {% endfor %}
+        </div>
+
+        {% if proyectos_extra %}
+          <details class="list-expand mt-4">
+            <summary class="list-expand__toggle">Ver más proyectos</summary>
+
+            <div class="row g-4 mt-2">
+              {% for p in proyectos_extra %}
+                {% include "components/molecules/project_card.html" %}
+              {% endfor %}
+            </div>
+          </details>
+        {% endif %}
+      {% endwith %}
+    {% endwith %}
   {% else %}
     <p>Por ahora no hay proyectos cargados.</p>
   {% endif %}
 </section>
 
-<section id="educacion" class="mb-5">
+<section id="educacion" class="mb-5 js-reveal">
   <h2 class="seccion-titulo mb-4">Educación</h2>
 
   <div class="row g-4">
@@ -72,13 +78,7 @@
       {% if educacion_profesional %}
         <div class="d-flex flex-column gap-3">
           {% for ed in educacion_profesional %}
-            <div class="card shadow-sm border-0">
-              <div class="card-body p-4">
-                <h5 class="fw-bold mb-1">{{ ed.titulo }}</h5>
-                <p class="mb-1">{{ ed.institucion }}</p>
-                <p class="text-muted mb-0">{{ ed.fecha }}</p>
-              </div>
-            </div>
+            {% include "components/molecules/education_item.html" %}
           {% endfor %}
         </div>
       {% else %}
@@ -92,13 +92,7 @@
       {% if educacion_formacion %}
         <div class="d-flex flex-column gap-3">
           {% for ed in educacion_formacion %}
-            <div class="card shadow-sm border-0">
-              <div class="card-body p-4">
-                <h5 class="fw-bold mb-1">{{ ed.titulo }}</h5>
-                <p class="mb-1">{{ ed.institucion }}</p>
-                <p class="text-muted mb-0">{{ ed.fecha }}</p>
-              </div>
-            </div>
+            {% include "components/molecules/education_item.html" %}
           {% endfor %}
         </div>
       {% else %}
@@ -108,18 +102,13 @@
   </div>
 </section>
 
-<section id="habilidades" class="mb-5">
+<section id="habilidades" class="mb-5 js-reveal">
   <h2 class="seccion-titulo mb-4">Habilidades</h2>
 
   {% if habilidades %}
-    <div class="d-flex flex-wrap gap-2">
+    <div class="skills-list">
       {% for h in habilidades %}
-        <span class="badge rounded-pill bg-dark fs-6 px-3 py-2">
-          {{ h.nombre }}
-          {% if h.categoria %}
-            · {{ h.categoria }}
-          {% endif %}
-        </span>
+        {% include "components/molecules/skill_badge.html" %}
       {% endfor %}
     </div>
   {% else %}

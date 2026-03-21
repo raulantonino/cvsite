@@ -1,6 +1,7 @@
 from django import forms
 from .models import Perfil
 
+
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
@@ -11,7 +12,7 @@ class PerfilForm(forms.ModelForm):
             'telefono',
             'sobre_mi',
             'linkedin_url',
-            'github_url'
+            'github_url',
         ]
 
         widgets = {

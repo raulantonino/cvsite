@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar {{ tipo }}{% endblock %}
+
+{% block content %}
+<section class="py-5 js-reveal">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-7">
+      <div class="card shadow-sm border-0 contacto-card">
+        <div class="card-body p-4 p-md-5">
+          <h1 class="seccion-titulo mb-3">Eliminar {{ tipo }}</h1>
+
+          <p class="mb-4">
+            ¿Estás seguro de que quieres eliminar este {{ tipo }}?
+          </p>
+
+          <div class="card border-0 bg-light mb-4">
+            <div class="card-body">
+              <strong>{{ objeto }}</strong>
+            </div>
+          </div>
+
+          <form method="POST">
+            {% csrf_token %}
+            <div class="d-flex gap-2 flex-wrap">
+              <button type="submit" class="btn btn-danger contacto-btn">Sí, eliminar</button>
+              <a href="{% url cancel_url %}" class="btn btn-outline-dark contacto-btn">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

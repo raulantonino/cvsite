@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Panel CV{% endblock %}
+
+{% block content %}
+<section class="py-5 js-reveal">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div>
+      <h1 class="seccion-titulo mb-2">Panel CV</h1>
+      <p class="text-muted mb-0">
+        Desde aquí puedes administrar el contenido principal de tu currículum.
+      </p>
+    </div>
+
+    <a href="{% url 'home' %}" class="btn btn-outline-dark contacto-btn">
+      Ver CV público
+    </a>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-xl-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body p-4 d-flex flex-column">
+          <h4 class="fw-bold mb-2">Perfil</h4>
+          <p class="text-muted mb-4 flex-grow-1">
+            Edita tu nombre, título, descripción, enlaces y foto de perfil.
+          </p>
+          <a href="{% url 'editar_perfil' %}" class="btn btn-dark">
+            Editar perfil
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body p-4 d-flex flex-column">
+          <h4 class="fw-bold mb-2">Experiencias</h4>
+          <p class="text-muted mb-4 flex-grow-1">
+            Agrega, edita o elimina experiencias laborales.
+          </p>
+          <a href="{% url 'lista_experiencias' %}" class="btn btn-dark">
+            Gestionar experiencias
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body p-4 d-flex flex-column">
+          <h4 class="fw-bold mb-2">Proyectos</h4>
+          <p class="text-muted mb-4 flex-grow-1">
+            Administra tus proyectos, tecnologías y enlaces.
+          </p>
+          <a href="{% url 'lista_proyectos' %}" class="btn btn-dark">
+            Gestionar proyectos
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body p-4 d-flex flex-column">
+            <h4 class="fw-bold mb-2">Educación</h4>
+            <p class="text-muted mb-4 flex-grow-1">
+                Administra tu formación profesional y complementaria.
+            </p>
+            <a href="{% url 'lista_educacion' %}" class="btn btn-dark">
+                Gestionar educación
+            </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body p-4 d-flex flex-column">
+            <h4 class="fw-bold mb-2">Habilidades</h4>
+            <p class="text-muted mb-4 flex-grow-1">
+                Edita tus habilidades y sus categorías.
+            </p>
+            <a href="{% url 'lista_habilidades' %}" class="btn btn-dark">
+                Gestionar habilidades
+            </a>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

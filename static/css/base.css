@@ -251,3 +251,8 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
+
+.border-dashed {
+    border: 1px dashed #cfd8e3 !important;
+    background-color: #fbfcfe;
+}

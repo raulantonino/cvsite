@@ -60,23 +60,6 @@ else:
     }
 
 
-WHITENOISE_ENABLED = False
-
-try:
-    import whitenoise  # noqa: F401
-except ImportError:
-    pass
-else:
-    WHITENOISE_ENABLED = True
-    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-    STORAGES = {
-        'default': {
-            'BACKEND': 'django.core.files.storage.FileSystemStorage',
-        },
-        'staticfiles': {
-            'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-        },
-    }
 
 
 SESSION_COOKIE_SECURE = True

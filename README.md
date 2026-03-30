@@ -11,7 +11,7 @@ Aplicación web desarrollada con Django que permite gestionar y visualizar un cu
 - Educación separada (profesional y formación complementaria)
 - Habilidades categorizadas
 - Proyectos con tecnologías y enlaces
-- Formulario de contacto funcional
+- Formulario de contacto con flujo base
 - Sistema de autenticación (login / logout)
 - Panel de administración (CRUD completo)
 
@@ -39,13 +39,19 @@ python -m venv venv
 3. Activar entorno (Windows):
 venv\Scripts\activate
 
-4. Instalar dependencias:
+4. Crear archivo de entorno:
+copiar .env.example como .env
+
+5. Instalar dependencias:
 pip install -r requirements.txt
 
-5. Ejecutar servidor:
+6. Aplicar migraciones:
+python manage.py migrate
+
+7. Ejecutar servidor:
 python manage.py runserver
 
-6. Abrir en navegador:
+8. Abrir en navegador:
 http://127.0.0.1:8000/
 
 ---
@@ -55,9 +61,21 @@ http://127.0.0.1:8000/
 URL:
 http://127.0.0.1:8000/admin/
 
-Credenciales:
-Usuario: admin  
-Contraseña: cvsite123  
+Por seguridad, este repositorio no publica credenciales.
+
+Para acceso local, crea tu propio superusuario:
+
+```bash
+python manage.py createsuperuser
+```
+
+---
+
+## 📌 Notas del repositorio
+
+- Este repositorio incluye `db.sqlite3` y algunos archivos `media/` para fines académicos y de demostración local.
+- Esa decisión no debe tomarse como referencia para un deploy real en producción.
+- La preparación real para deploy se está trabajando en documentación local de avance.
 
 ---
 

@@ -1,5 +1,7 @@
 # Entorno virtual
 venv/
+.venv/
+env/
 
 # Python
 __pycache__/
@@ -7,8 +9,13 @@ __pycache__/
 *.pyo
 *.pyd
 
+# Variables de entorno
+.env
+
 # Archivos de VSCode (opcional)
 .vscode/
+.idea/
+*.swp
 
 # Archivos del sistema
 .DS_Store
@@ -16,10 +23,14 @@ Thumbs.db
 
 # Archivos de Django (producción / temporales)
 staticfiles/
+media/
 
 # Archivos de logs o temporales
 *.log
 
-# Archivos de base de datos opcionales
-# (para esta entrega puedes subir db.sqlite3, así que lo dejamos activo)
-# db.sqlite3
+# Archivos de base de datos locales
+db.sqlite3
+*.sqlite3
+
+# Documentacion local de trabajo
+docs/

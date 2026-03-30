@@ -10,22 +10,57 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+def _load_env_file(env_path):
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        if not env_path.exists():
+            return
+
+        for raw_line in env_path.read_text(encoding='utf-8').splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+
+            key, value = line.split('=', 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            os.environ[key] = value
+    else:
+        load_dotenv(env_path, override=True)
+
+
+def _env_bool(name, default=False):
+    return os.environ.get(name, str(default)).strip().lower() in {'1', 'true', 'yes', 'on'}
+
+
+_load_env_file(BASE_DIR / '.env')
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j3z@op0i@drub4k=tz_2&pi*ph$7=c2!bgj(bl)^0v6opqm5-b'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+if not SECRET_KEY:
+    raise RuntimeError('SECRET_KEY no configurada. Crea un archivo .env a partir de .env.example.')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = _env_bool('DEBUG', True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    if host.strip()
+]
 
 
 # Application definition

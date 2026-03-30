@@ -1,26 +1,24 @@
 from django import forms
 
+from .models import MensajeContacto
 
-class ContactoForm(forms.Form):
-    nombre = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Tu nombre"
-        })
-    )
 
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={
-            "class": "form-control",
-            "placeholder": "tu@email.com"
-        })
-    )
-
-    mensaje = forms.CharField(
-        widget=forms.Textarea(attrs={
-            "class": "form-control",
-            "placeholder": "Escribe tu mensaje aquí...",
-            "rows": 6
-        })
-    )
+class ContactoForm(forms.ModelForm):
+    class Meta:
+        model = MensajeContacto
+        fields = ['nombre', 'email', 'mensaje']
+        widgets = {
+            'nombre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Tu nombre',
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'tu@email.com',
+            }),
+            'mensaje': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Escribe tu mensaje aqui...',
+                'rows': 6,
+            }),
+        }

@@ -2,10 +2,27 @@
 {% block title %}Enviado{% endblock %}
 {% block content %}
 
-<div class="alert alert-success">
-  ✅ Mensaje enviado correctamente.
-</div>
+<section class="py-5 js-reveal">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm border-0 contacto-card">
+        <div class="card-body p-4 p-md-5">
+          <div class="alert alert-success mb-4">
+            Mensaje enviado correctamente.
+          </div>
 
-<a class="btn btn-outline-dark" href="{% url 'home' %}">Volver al inicio</a>
+          <p class="text-muted mb-4">
+            Gracias por escribir. Tu mensaje quedo registrado y podra revisarse desde el panel de administracion.
+          </p>
+
+          <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-dark contacto-btn" href="{% url 'home' %}">Volver al inicio</a>
+            <a class="btn btn-outline-dark contacto-btn" href="{% url 'contacto' %}">Enviar otro mensaje</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

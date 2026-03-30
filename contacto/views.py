@@ -1,16 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
+
 from .forms import ContactoForm
 
+
 def contacto_view(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
-            # Por ahora NO guardamos, solo simulamos envío
-            return redirect("contacto_exito")
+            form.save()
+            return redirect('contacto_exito')
     else:
         form = ContactoForm()
 
-    return render(request, "contacto/contacto.html", {"form": form})
+    return render(request, 'contacto/contacto.html', {'form': form})
+
 
 def contacto_exito_view(request):
-    return render(request, "contacto/exito.html")
+    return render(request, 'contacto/exito.html')

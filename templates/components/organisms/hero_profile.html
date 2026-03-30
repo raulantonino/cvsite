@@ -32,12 +32,6 @@
       </div>
 
       <div class="d-flex flex-wrap gap-3 mb-4">
-        {% if perfil.url_portafolio_creativo %}
-          <a href="{{ perfil.url_portafolio_creativo }}" target="_blank" rel="noopener" class="btn btn-dark btn-sm">
-            <i class="bi bi-palette-fill me-1"></i>Portafolio creativo
-          </a>
-        {% endif %}
-
         {% if perfil.linkedin_url %}
           <a href="{{ perfil.linkedin_url }}" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
             <i class="bi bi-linkedin me-1"></i>LinkedIn

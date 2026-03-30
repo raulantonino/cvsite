@@ -21,4 +21,3 @@ class InicioViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Raul Ortega')
         self.assertContains(response, 'Desarrollador Django')
-        self.assertContains(response, 'Portafolio creativo')

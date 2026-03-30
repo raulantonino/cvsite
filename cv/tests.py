@@ -27,7 +27,6 @@ class PanelCvTests(TestCase):
             'email': 'raul@example.com',
             'telefono': '+56 9 1234 5678',
             'sobre_mi': 'Perfil actualizado desde tests.',
-            'url_portafolio_creativo': 'https://example.com/portfolio',
             'linkedin_url': 'https://linkedin.com/in/raul',
             'github_url': 'https://github.com/raul',
         }, follow=True)
@@ -37,4 +36,4 @@ class PanelCvTests(TestCase):
 
         perfil = Perfil.objects.get()
         self.assertEqual(perfil.nombre, 'Raul Ortega')
-        self.assertEqual(perfil.url_portafolio_creativo, 'https://example.com/portfolio')
+        self.assertEqual(perfil.linkedin_url, 'https://linkedin.com/in/raul')
